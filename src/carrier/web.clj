@@ -11,8 +11,11 @@
   (GET "/" [] "Carrier API")
 
   (GET "/inbox" {params :params}
-    (apply api/inbox ((juxt :email :password) params)))
-  
+    (apply api/inbox ((juxt :email :password :limit) params)))
+
+  (GET "/inbox/:id" [id]
+    "Get by id %s" id)
+                     
   (route/not-found "Page not found"))
 
 (def app
